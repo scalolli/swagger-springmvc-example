@@ -18,20 +18,18 @@ import com.wordnik.swagger.annotations.ApiOperation;
 @Api(value="", description="Operations about users")
 public class UserService {
 
-	@RequestMapping(method=RequestMethod.GET)
-	@ApiOperation(value = "List all users")
-	public @ResponseBody List<User> listPets()
-	{
-		return Lists.newArrayList();
-	}
-
-	@RequestMapping(value="/{userId}",method=RequestMethod.GET)
-	@ApiOperation(value = "Find user by ID")
-	@ApiErrors(errors = { @ApiError(code = 400, reason = "Invalid ID supplied"),
-			@ApiError(code = 404, reason = "Pet not found") })
-	public User getPets()
-	{
-		return new User();
-	}
+//	@RequestMapping(method=RequestMethod.GET)
+//	@ApiOperation(value = "List all users")
+//	public @ResponseBody List<User> listPets()
+//	{
+//		return Lists.newArrayList();
+//	}
+//
+//	@RequestMapping(value="/{userId}",method=RequestMethod.GET)
+//	@ApiOperation(value = "Find user by ID")
+//	public User getPets()
+//	{
+//		return new User();
+//	}
 
 }
