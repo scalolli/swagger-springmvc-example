@@ -20,16 +20,10 @@ import com.wordnik.swagger.annotations.ApiParam;
 import com.wordnik.swagger.sample.exception.NotFoundException;
 
 @Controller
-@RequestMapping("/pets")
+@RequestMapping("/pet")
 @Api(value="", description="Operations about pets")
 public class PetService {
 
-	@RequestMapping(method=RequestMethod.GET)
-	@ApiOperation(value = "List all pets")
-	public @ResponseBody List<Pet> listPets()
-	{
-		return Lists.newArrayList();
-	}
 	@RequestMapping(value="/{petId}",method=RequestMethod.GET)
 	@ApiOperation(value = "Find pet by ID", notes = "Returns a pet when ID < 10. "
 			+ "ID > 10 or nonintegers will simulate API error conditions", responseClass = "com.wordnik.swagger.sample.model.Pet"
@@ -56,7 +50,7 @@ public class PetService {
 
 	@RequestMapping(value="/findByStatus",method=RequestMethod.GET)
 	@ApiOperation(value = "Finds Pets by status", notes = "Multiple status values can be provided with comma seperated strings", responseClass = "com.wordnik.swagger.sample.model.Pet", multiValueResponse = true)
-	public void findPetsByStatus(
+	public List<Pet> findPetsByStatus(
 			@ApiParam(value = "Status values that need to be considered for filter", required = true, defaultValue = "available", allowableValues = "available,pending,sold", allowMultiple = true) @RequestParam("status") String status) {
 		throw new NotImplementedException();
 	}
@@ -64,16 +58,8 @@ public class PetService {
 	@RequestMapping(value="/findByTags",method=RequestMethod.GET)
 	@ApiOperation(value = "Finds Pets by tags", notes = "Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.", responseClass = "com.wordnik.swagger.sample.model.Pet", multiValueResponse = true)
 	@Deprecated
-	public void findPetsByTags(
+	public List<Pet> findPetsByTags(
 			@ApiParam(value = "Tags to filter by", required = true, allowMultiple = true) @RequestParam("tags") String tags) {
 		throw new NotImplementedException();
 	}
-
-    @RequestMapping(value="/findByName",method=RequestMethod.GET)
-    @ApiOperation(value = "Finds Pets by name", notes = "Muliple tags can be provided with comma seperated strings. Use tag1, tag2, tag3 for testing.", responseClass = "com.wordnik.swagger.sample.model.Pet", multiValueResponse = true)
-    @Deprecated
-    public void findPetsByName(
-            @ApiParam(value = "Tags to filter by", required = true, allowMultiple = true) @RequestParam("tags") String tags) {
-        throw new NotImplementedException();
-    }
 }
